@@ -5,7 +5,8 @@ import './App.css';
 
 interface Todo {
   text : string;
-  completed : boolean
+  completed : boolean;
+  timestamp : number;
 }
 
 const App:React.FC = () => {
@@ -36,12 +37,13 @@ const App:React.FC = () => {
 
       const updatedTodos = [...todos];
       updatedTodos[editIndex].text = input;
+      updatedTodos[editIndex].timestamp = Date.now();
       setTodos(updatedTodos);
       setEditIndex(null);
 
     }else{
 
-      setTodos((prev) => [...prev,{text:input,completed:false}]);
+      setTodos((prev) => [...prev,{text:input,completed:false,timestamp:Date.now()}]);
     }
 
     setInput("");
